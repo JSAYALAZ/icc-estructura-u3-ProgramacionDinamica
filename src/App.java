@@ -1,3 +1,5 @@
+import java.util.HashMap;
+import java.util.Map;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -7,17 +9,18 @@ public class App {
         startime = System.nanoTime();
         System.out.println(fibonacci(40));
         endtime = System.nanoTime();
-        System.out.println("Time taken: " + (endtime - startime) + " ns");
+        System.out.println("Time taken: " + (endtime - startime)/1e9 + " sg");
+
 
         startime = System.nanoTime();
         System.out.println(fibonacciWithCaching(40));
         endtime = System.nanoTime();
-        System.out.println("Time taken: " + (endtime - startime) + " ns");
+        System.out.println("Time taken: " + (endtime - startime)/1e9 + " sg");
 
         startime = System.nanoTime();
         System.out.println(fibonacciCaching(40));
         endtime = System.nanoTime();
-        System.out.println("Time taken: " + (endtime - startime) + " ns");
+        System.out.println("Time taken: " + (endtime - startime)/1e9 + " sg");
 
         /// Ejericio 1
         // runEjercicio();
@@ -26,20 +29,46 @@ public class App {
 
     // Normal recursive method
     public static int fibonacci(int n) {
-        // TODO: Implement this method
-        return 0;
+        if(n<=1){
+            return n;
+        }
+        return fibonacci(n-1) + fibonacci(n-2);
     }
 
-    // First caching method: Using a Map
+    private static Map<Integer, Integer> cacheMap = new HashMap<>();
+
     public static int fibonacciWithCaching(int n) {
-        // TODO: Implement this method
-        return 0;
+        if (n <= 1) {
+            return n;
+        }
+        // revisar en cache si ya se calculo
+        if (cacheMap.containsKey(n)) {
+            cacheMap.get(n);
+
+        }
+
+        int result = fibonacciWithCaching(n - 1) + fibonacciWithCaching(n - 2);
+        cacheMap.put(n, result);
+        return result;
     }
 
     // Second caching method: Using an array
     public static int fibonacciCaching(int n) {
-        // TODO: Implement this method
-        return 0;
+        int[] cache= new int[n+1];
+        return fibonacciArreglo(n, cache);
+    }
+
+    
+
+    private static int fibonacciArreglo(int n, int[] cache) {
+        if(n<=1){
+            return n;
+        }
+        if(cache[n]!=0){
+            return cache[n];
+        }
+        return fibonacciArreglo(n-1, cache) + fibonacciArreglo(n-2,cache);
+
     }
 
     public static void runEjercicio() {
