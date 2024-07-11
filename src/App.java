@@ -1,29 +1,33 @@
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import Ejercicios.contorllers.Laberinto;
+import Ejercicios.models.Celda;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        System.out.println("Programación Dinámica");
+        // System.out.println("Programación Dinámica");
 
-        long startime, endtime = 0;
-        startime = System.nanoTime();
-        System.out.println(fibonacci(40));
-        endtime = System.nanoTime();
-        System.out.println("Time taken: " + (endtime - startime)/1e9 + " sg");
+        // long startime, endtime = 0;
+        // startime = System.nanoTime();
+        // System.out.println(fibonacci(40));
+        // endtime = System.nanoTime();
+        // System.out.println("Time taken: " + (endtime - startime)/1e9 + " sg");
 
 
-        startime = System.nanoTime();
-        System.out.println(fibonacciWithCaching(40));
-        endtime = System.nanoTime();
-        System.out.println("Time taken: " + (endtime - startime)/1e9 + " sg");
+        // startime = System.nanoTime();
+        // System.out.println(fibonacciWithCaching(40));
+        // endtime = System.nanoTime();
+        // System.out.println("Time taken: " + (endtime - startime)/1e9 + " sg");
 
-        startime = System.nanoTime();
-        System.out.println(fibonacciCaching(40));
-        endtime = System.nanoTime();
-        System.out.println("Time taken: " + (endtime - startime)/1e9 + " sg");
+        // startime = System.nanoTime();
+        // System.out.println(fibonacciCaching(40));
+        // endtime = System.nanoTime();
+        // System.out.println("Time taken: " + (endtime - startime)/1e9 + " sg");
 
-        /// Ejericio 1
-        // runEjercicio();
+        //  Ejericio 1
+        runEjercicio();
 
     }
 
@@ -72,13 +76,21 @@ public class App {
     }
 
     public static void runEjercicio() {
-
+        Laberinto labertinto = new Laberinto();
         // boolean[][] grid = {
-        // { true, true, true, true },
-        // { false, false, false, true },
-        // { true, true, false, true },
-        // { true, true, false, true }
+        // { true},
         // };
+        boolean[][] grid = {
+        { true, true, true, true },
+        { false, false, false, true },
+        { true, true, false, true },
+        { true, true, false, true }
+        };
+
+        List<Celda> resultado = labertinto.getPath(grid);
+        for (Celda celda : resultado) {
+            System.out.println(String.format("[% , %]", celda.getCol(),celda.getRow()));
+        }
 
     }
 }

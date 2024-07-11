@@ -36,4 +36,15 @@ public class Celda {
             return false; // Comparamos las columnas
         return true; // Si todas las comparaciones son iguales, los objetos son iguales
     }
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getCol() {
+        return col;
+    }
+
+
+    
 }
